@@ -1,5 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 
@@ -20,6 +21,13 @@ items = [{"image": "/blueWhiteShirt.png","title":"Blue and White Shirt", "descri
 def index():
     """Return homepage."""
     return render_template('home.html', items=items)
+
+@app.route('/shirt/<id>')
+def shirt(id):
+    id = int(id)
+    item = items[id]
+    return render_template('item.html', item=item)
+
 
 if __name__ == "__main__":
     app(debug=True)
