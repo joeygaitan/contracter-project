@@ -49,7 +49,7 @@ def cart_submit():
         'price': item['price'] * int(request.form.get('quantity'))
     }
     cart.insert_one(cart_item)
-    return redirect(url_for('home.html'))
+    return redirect(url_for('index'))
 
 
 if __name__ == "__main__":
