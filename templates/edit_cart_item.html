@@ -1,0 +1,39 @@
+<!-- templates/playlists_edit.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/cart/{{cart_item._id}}'>
+    <fieldset>
+        <legend>Edit Playlist</legend>
+
+        <p>Please Pick the Quantity of shirt you would like to add to your Cart</p>
+        <p>
+                <select name="quantity">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="3">Four</option>
+                    <option value="3">Five</option>
+                </select>
+        </p>
+        <!-- DESCRIPTION -->
+        <p>Size</p>
+    <p>
+        <select name="size">
+            <option value="xs">"extra small"</option>
+            <option value="s">"small"</option>
+            <option value="m">"medium"</option>
+            <option value="lg">"large"</option>
+            <option value="xl">"extra large"</option>
+        </select>
+    </p>
+
+    </fieldset>
+    <input type="hidden" name="_id" value="{{cart_item['_id']}}"/>
+    <input type="hidden" name="title" value="{{cart_item['title']}}"/>
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Update Item</button>
+    </p>
+</form>
+{% endblock %}

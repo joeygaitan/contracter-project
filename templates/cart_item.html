@@ -2,16 +2,14 @@
 
 {% block content %}
 
-{% for item in cart %}
 <div class="card w-75">
         <div class="card-body">
-          <h5 class="card-title">{{item['title']}}</h5>
-          <p class="card-text">{{item['price']}}</p>
-          <p class="card-text">{{item['quantity']}}</p>
+          <h5 class="card-title">{{cart_item['title']}}</h5>
+          <p class="card-text">{{cart_item['price']}}</p>
+          <p class="card-text">{{cart_item['quantity']}}</p>
           <a href="cart/edit/{{item['_id']}}" class="btn btn-primary">Edit</a>
           <a href="#" class="btn btn-primary">Delete</a>
         </div>
 </div>
-{% endfor %}
 
 {% endblock %}  

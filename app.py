@@ -40,6 +40,33 @@ def create_cart_item(id):
     item = items[id]
     return render_template('create_cart_item.html', item=item)
 
+@app.route('/cart/edit/<cart_item_id>')
+def edit_cart(cart_item_id):
+    cart_item = cart.find_one({'_id': ObjectId(cart_item_id)})
+    
+    return render_template('edit_cart_item.html', cart_item=cart_item)
+
+@app.route('/cart/<cart_item_id>', methods=['POST'])
+def cart_item_update():
+    _id = request.form.get('_id')
+    title_id = request.form.get('title')
+
+    for item in items:
+        if item['title'] == title_id:
+            id = items.index(item)
+    item = items[id]
+
+    updated_cart_item = {
+        'quantity': request.form.get('quantity'),
+        'size': request.form.get('size'),
+        'title': item['title'],
+        'price': item['price'] * int(request.form.get('quantity'))
+    }
+    cart.update_one(
+        {'_id': ObjectId(_id)},
+        {'$set': updated_cart_item})
+    return redirect(url_for('cart', _id = _id ))
+
 @app.route('/', methods=['POST'])
 def cart_submit():
     id = request.form.get('id')
@@ -49,7 +76,6 @@ def cart_submit():
     cart_item = {
         'quantity': request.form.get('quantity'),
         'size': request.form.get('size'),
-        'image': item['image'],
         'title': item['title'],
         'price': item['price'] * int(request.form.get('quantity'))
     }
