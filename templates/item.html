@@ -2,10 +2,11 @@
 
 {% block content %}
 <div class="card" style="width: 40rem; height: 40rem; padding: 40px">
-        <img src= "static/shirts{{ item['image'] }}" width="75%"height="75%"/>
+        <img src= "../static/shirts{{ item['image'] }}" width="75%"height="75%"/>
         <div class="card-body">
             <h5 class="card-title">{{item['title']}}</h5>
             <p class="card-text">{{item['description']}}</p>
+            <h5 class="card-title">${{item['price']}}</h5>
             <a href="/" class="btn btn-primary">Back</a>
             <a href="/cart/add/{{item['-id']}}" class="btn btn-primary">add to cart</a>
         </div>

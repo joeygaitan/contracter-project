@@ -2,23 +2,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="card" style="width: 40rem; height: 40rem; padding: 40px">
+        <img src= "../../static/shirts{{ item['image'] }}" width="75%"height="75%"/>
+        <div class="card-body">
+            <h5 class="card-title">{{item['title']}}</h5>
+            <h5 class="card-title">${{item['price']}}</h5>
+            <a href="/shirt/{{item['-id']}}" class="btn btn-primary">Back</a>
+        </div>
+</div>
 <form method='POST' action='/'>
     <fieldset>
     <legend>Add to Cart</legend>
     <!-- TITLE -->
+    <p>Please Pick the Quantity of shirt you would like to add to your Cart</p>
     <p>
-        <label for='quantity'>Quantity</label><br>
-        <input type='text' name='quantity' />
-    </p>
+            <select name="quantity">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="3">Four</option>
+                <option value="3">Five</option>
+            </select>
+        </p>
+    <p>Size</p>
     <p>
-        <label for='size'>Size</label><br>
-        <input type='text' name='size' />
+        <select name="size">
+        {%for size in item['size']%}
+                <option value="{{size}}">{{size}}</option>
+        {% endfor %}
+        </select>
     </p>
-    </fieldset>
 
+    </fieldset>
+    <input type="hidden" name="id" value="{{item['-id']}}"/>
     <!-- BUTTON -->
     <p>
-        <button type='submit'>Save Playlist</button>
+            <button type='submit'>Add to Cart</button>
     </p>
 </form>
 {% endblock %}
