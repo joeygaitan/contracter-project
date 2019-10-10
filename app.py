@@ -17,6 +17,9 @@ items = [{"image": "/blueWhiteShirt.png","title":"Blue and White Shirt", "descri
 {"image": "/yellowStripeShirt.png","title":"Yellow Stripe Shirt", "description": "This shirt is has a nice yellow stripe on it. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly", "size": ["xs","s","m","l","xl"], "price": 16.00,"-id":6},
 {"image": "/beastShirt.png","title":"Beast Shirt", "description": "This is a yellow shirt with the word Beast on it. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly", "size": ["xs","s","m","l","xl"], "price": 11.00,"-id":7}]
 
+def checkout_accimulator(cart):
+    pass
+
 @app.route('/')
 def index():
     """Return homepage."""
@@ -47,7 +50,7 @@ def edit_cart(cart_item_id):
     return render_template('edit_cart_item.html', cart_item=cart_item)
 
 @app.route('/cart/<cart_item_id>', methods=['POST'])
-def cart_item_update():
+def cart_item_update(cart_item_id):
     _id = request.form.get('_id')
     title_id = request.form.get('title')
 
@@ -63,9 +66,10 @@ def cart_item_update():
         'price': item['price'] * int(request.form.get('quantity'))
     }
     cart.update_one(
-        {'_id': ObjectId(_id)},
+        {'_id': ObjectId(cart_item_id)},
         {'$set': updated_cart_item})
-    return redirect(url_for('cart', _id = _id ))
+    cart_item = cart.find_one({'_id': ObjectId(cart_item_id)})
+    return redirect(url_for('cart_index', cart_item=cart_item, cart_item_id=cart_item_id))
 
 @app.route('/', methods=['POST'])
 def cart_submit():
