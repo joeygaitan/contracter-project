@@ -1,0 +1,24 @@
+<!-- templates/playlists_new.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<form method='POST' action='/'>
+    <fieldset>
+    <legend>Add to Cart</legend>
+    <!-- TITLE -->
+    <p>
+        <label for='quantity'>Quantity</label><br>
+        <input type='text' name='quantity' />
+    </p>
+    <p>
+        <label for='size'>Size</label><br>
+        <input type='text' name='size' />
+    </p>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <p>
+        <button type='submit'>Save Playlist</button>
+    </p>
+</form>
+{% endblock %}
