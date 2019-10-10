@@ -3,10 +3,9 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-# client = MongoClient()
-# db = client.Contracter
-
-# client = MongoClient()
+client = MongoClient()
+db = client.Shirtlist
+cart = db.cart
 
 items = [{"image": "/blueWhiteShirt.png","title":"Blue and White Shirt", "description": "This shirt is Blue and White. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly","price": 10.00, "size": ["xs","s","m","l","xl"]}
 ,{"image": "/fendiShirt.png","title":"Fendi Shirt", "description": "This shirt is black and has a white Fendi text on it. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly", "size": ["xs","s","m","l","xl"], "price": 20.00}
