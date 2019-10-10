@@ -12,5 +12,20 @@ joeygaitan
 pip3 install -r requirements.txt
 ```
 
+next run 
+```
+python3 -m venv env
+```
+
+then 
+```
+source env/bin/activate
+```
+
+lastly run
+```
+export FLASK_ENV=development; flask run
+```
+
 
 
