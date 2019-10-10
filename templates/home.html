@@ -2,18 +2,22 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container">
-        {% for item in items %}
-        <div class="">
-                <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="container" style="padding: 40px">
+        <div class="row">
+            {% for item in items %}
+                    <div class="col-lg-4" style="padding: 40px; margin: 50px"> 
+                        <div class="card" style="width: 18rem;">
+                                <img src= "static/shirts{{ item['image']}}" width="75%"height="75%"/>
+                                <div class="card-body">
+                                <h5 class="card-title">Please Work</h5>
+                                <p class="card-text"></p>
+                                <a href="#" class="btn btn-primary">review</a>
+                                <a href="#" class="btn btn-primary">add to cart</a>
+                                </div>
                         </div>
-                </div>
+                    </div>
+            {% endfor %}
         </div>
-        {% endfor %}
 
     </div>
 {% endblock %}
