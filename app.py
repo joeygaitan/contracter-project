@@ -48,7 +48,7 @@ def create_cart_item(id):
 
 @app.route('/cart/edit/<cart_item_id>')
 def edit_cart(cart_item_id):
-    '''Edit item in cart'''
+    '''Edit item in cart. This finds the item so you can later update it with the cart_item_update'''
     cart_item = cart.find_one({'_id': ObjectId(cart_item_id)})
     
     return render_template('edit_cart_item.html', cart_item=cart_item)

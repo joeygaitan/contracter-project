@@ -1,12 +1,16 @@
 ## Contracter Project
 
-## User Stories
-1. As a user I can sign up
-2. As a user I can login
+### Project Description
 
-1. I can add items to my indiviual cart
-2. I can remove items from my cart
-3. I can modify my cart items
-4. I can see my exact cart items
+This is a shirt store. It uses mongodb, flask, and jinja2 for the web application. It is a fully functional CRUD Cart from a Mongo database. You can Create,Read, Update, Delete. 
+
+## Author
+joeygaitan
+
+# How to install dependecies to run locally. 
+```
+pip3 install -r requirements.txt
+```
+
 
 
