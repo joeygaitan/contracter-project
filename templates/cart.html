@@ -9,7 +9,10 @@
           <p class="card-text">{{item['price']}}</p>
           <p class="card-text">{{item['quantity']}}</p>
           <a href="cart/edit/{{item['_id']}}" class="btn btn-primary">Edit</a>
-          <a href="#" class="btn btn-primary">Delete</a>
+
+          <p><form method='POST' action="/cart/delete/{{ item._id }}">
+            <button type='submit'>Delete</button>
+        </form></p>
         </div>
 </div>
 {% endfor %}

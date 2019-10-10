@@ -8,6 +8,7 @@ client = MongoClient()
 db = client.Shirtlist
 cart = db.cart
 
+# Shop items
 items = [{"image": "/blueWhiteShirt.png","title":"Blue and White Shirt", "description": "This shirt is Blue and White. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly","price": 10.00, "size": ["xs","s","m","l","xl"],"-id":0}
 ,{"image": "/fendiShirt.png","title":"Fendi Shirt", "description": "This shirt is black and has a white Fendi text on it. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly", "size": ["xs","s","m","l","xl"], "price": 20.00,"-id":1}
 ,{"image": "/focusShirt.png","title":"Focus Shirt", "description": "This shirt is black Focus text on it. It comes in many sizes. Theses shirts that sold here are all unisex. please pick accordingly","size": ["xs","s","m","l","xl"], "price": 25.00,"-id":2}
@@ -28,29 +29,33 @@ def index():
 
 @app.route('/shirt/<id>')
 def shirt(id):
+    ''''Single Shirt Item'''
     id = int(id)
     item = items[id]
     return render_template('item.html', item=item)
 
 @app.route('/cart')
 def cart_index():
-    """Return Cart. """
+    """Cart"""
     return render_template('cart.html', cart=cart.find())
 
 @app.route('/cart/add/<id>')
 def create_cart_item(id):
+    '''Add to Cart'''
     id = int(id)
     item = items[id]
     return render_template('create_cart_item.html', item=item)
 
 @app.route('/cart/edit/<cart_item_id>')
 def edit_cart(cart_item_id):
+    '''Edit item in cart'''
     cart_item = cart.find_one({'_id': ObjectId(cart_item_id)})
     
     return render_template('edit_cart_item.html', cart_item=cart_item)
 
 @app.route('/cart/<cart_item_id>', methods=['POST'])
 def cart_item_update(cart_item_id):
+    '''Update Cart Item'''
     _id = request.form.get('_id')
     title_id = request.form.get('title')
 
@@ -71,12 +76,18 @@ def cart_item_update(cart_item_id):
     cart_item = cart.find_one({'_id': ObjectId(cart_item_id)})
     return redirect(url_for('cart_index', cart_item=cart_item, cart_item_id=cart_item_id))
 
+@app.route('/cart/delete/<cart_item_id>', methods=['POST'])
+"""Delete item from cart"""
+def cart_delete(cart_item_id):
+    cart.delete_one({'_id': ObjectId(cart_item_id)})
+    return redirect(url_for('cart_index'))
+
 @app.route('/', methods=['POST'])
+"""Add a new Item to cart"""
 def cart_submit():
     id = request.form.get('id')
     id = int(id)
     item = items[id]
-    """Submit a new playlist."""
     cart_item = {
         'quantity': request.form.get('quantity'),
         'size': request.form.get('size'),
