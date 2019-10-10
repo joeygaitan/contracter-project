@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for item in cart %}
+<div class="card w-75">
+        <div class="card-body">
+          <h5 class="card-title">{{item['title']}}</h5>
+          <p class="card-text">{{item['price']}}</p>
+          <p class="card-text">{{item['quantity']}}</p>
+          <a href="#" class="btn btn-primary">Button</a>
+        </div>
+</div>
+{% endfor %}
+
+{% endblock %}  

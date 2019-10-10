@@ -29,6 +29,11 @@ def shirt(id):
     item = items[id]
     return render_template('item.html', item=item)
 
+@app.route('/cart')
+def cart_index():
+    """Return Cart. """
+    return render_template('cart.html', cart=cart.find())
+
 @app.route('/cart/add/<id>')
 def create_cart_item(id):
     id = int(id)
