@@ -77,14 +77,15 @@ def cart_item_update(cart_item_id):
     return redirect(url_for('cart_index', cart_item=cart_item, cart_item_id=cart_item_id))
 
 @app.route('/cart/delete/<cart_item_id>', methods=['POST'])
-"""Delete item from cart"""
 def cart_delete(cart_item_id):
+    """Delete item from cart"""
     cart.delete_one({'_id': ObjectId(cart_item_id)})
     return redirect(url_for('cart_index'))
 
 @app.route('/', methods=['POST'])
-"""Add a new Item to cart"""
+
 def cart_submit():
+    """Add a new Item to cart"""
     id = request.form.get('id')
     id = int(id)
     item = items[id]
